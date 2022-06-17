@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:html';
 import 'package:flutter/material.dart';
-import 'package:ug44/RegisterAccScreen.dart';
+import 'package:ug44/home_screen.dart';
+import 'package:ug44/register_acc_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     Timer(
-        Duration(seconds: 3),
+        Duration(milliseconds: 3000),
         () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => LoginScreen())));
   }
@@ -135,13 +136,20 @@ class MyLoginScreenState extends State<MyLoginScreen> {
                                   width: 4,
                                   style: BorderStyle.solid)),
                         ),
-                        Container(
-                          child: Image.asset(
-                            "assets/loginIcon.png",
-                            width: 100,
-                            height: 100,
-                          ),
-                        ),
+                        InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => UserHomeScreen()));
+                            },
+                            child: Container(
+                              child: Image.asset(
+                                "assets/loginIcon.png",
+                                width: 100,
+                                height: 100,
+                              ),
+                            )),
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 15),
                           alignment: Alignment.center,
