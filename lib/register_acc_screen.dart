@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ug44/main.dart';
@@ -68,166 +69,190 @@ class MyRegisterAccScreenState extends State<MyRegisterAccScreen> {
       ),
       body: SafeArea(
           child: Container(
-        color: Colors.transparent,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Expanded(
-                flex: 1,
-                child: Container(
-                    color: Color.fromARGB(255, 0, 62, 80),
-                    padding:
-                        EdgeInsets.symmetric(vertical: 30, horizontal: 100),
-                    child: Column(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          height: 50,
-                          child: TextField(
-                            decoration: InputDecoration(
-                                labelText: 'NAMA LENGKAP',
-                                enabledBorder: UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.transparent))),
-                          ),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                  color: Color.fromARGB(255, 94, 154, 182),
-                                  width: 4,
-                                  style: BorderStyle.solid)),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 20),
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          height: 50,
-                          child: TextField(
-                            decoration: InputDecoration(
-                                labelText: 'NIK',
-                                enabledBorder: UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.transparent))),
-                          ),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                  color: Color.fromARGB(255, 94, 154, 182),
-                                  width: 4,
-                                  style: BorderStyle.solid)),
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          height: 50,
-                          child: TextField(
-                            decoration: InputDecoration(
-                                labelText: 'E-MAIL',
-                                enabledBorder: UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.transparent))),
-                          ),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                  color: Color.fromARGB(255, 94, 154, 182),
-                                  width: 4,
-                                  style: BorderStyle.solid)),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 20),
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          height: 50,
-                          child: TextField(
-                            decoration: InputDecoration(
-                                labelText: 'PASSWORD',
-                                enabledBorder: UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.transparent))),
-                          ),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                  color: Color.fromARGB(255, 94, 154, 182),
-                                  width: 4,
-                                  style: BorderStyle.solid)),
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                setDate != null
-                                    ? Text(
-                                        "${setDate.day.toString()}-${setDate.month.toString()}-${setDate.year.toString()}",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 18))
-                                    : Text(
-                                        "Choose Your Date of Birth",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 18),
-                                      ),
-                                IconButton(
-                                  icon: Icon(
-                                    Icons.calendar_today,
-                                    color: Colors.white,
+              color: Color.fromARGB(255, 0, 62, 80),
+              child: Stack(
+                children: [
+                  Container(
+                      alignment: Alignment.bottomCenter,
+                      child: Image.asset(
+                        'assets/wave.png',
+                        fit: BoxFit.fitWidth,
+                      )),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                          flex: 1,
+                          child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 30, horizontal: 100),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    height: 50,
+                                    child: TextField(
+                                      decoration: InputDecoration(
+                                          labelText: 'NAMA LENGKAP',
+                                          enabledBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.transparent))),
+                                    ),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(
+                                            color: Color.fromARGB(
+                                                255, 94, 154, 182),
+                                            width: 4,
+                                            style: BorderStyle.solid)),
                                   ),
-                                  tooltip: 'Tap to open date picker',
-                                  onPressed: () {
-                                    showDatePicker(
-                                      context: context,
-                                      initialDate: DateTime.now(),
-                                      firstDate: DateTime(1901, 8),
-                                      lastDate: DateTime(2101),
-                                    ).then((value) {
-                                      if (value != null) {
-                                        setState(() {
-                                          setDate = value;
-                                        });
-                                      }
-                                    });
-                                  },
-                                ),
-                              ]),
-                        ),
-                        Container(
-                            margin: EdgeInsets.symmetric(vertical: 25),
-                            height: 50,
-                            width: 125,
-                            child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    primary: Color.fromARGB(255, 94, 154, 182),
-                                    side: BorderSide(
-                                        width: 3, color: Colors.transparent),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20))),
-                                child: Center(
-                                    child: Text(
-                                  "Sign Up",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                )),
-                                onPressed: () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                          content: Text(
-                                              "Successfully Registered!")));
-                                  Timer(Duration(seconds: 2), () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                LoginScreen()));
-                                  });
-                                }))
-                      ],
-                    )))
-          ],
-        ),
-      )),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 20),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    height: 50,
+                                    child: TextField(
+                                      decoration: InputDecoration(
+                                          labelText: 'NIK',
+                                          enabledBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.transparent))),
+                                    ),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(
+                                            color: Color.fromARGB(
+                                                255, 94, 154, 182),
+                                            width: 4,
+                                            style: BorderStyle.solid)),
+                                  ),
+                                  Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    height: 50,
+                                    child: TextField(
+                                      decoration: InputDecoration(
+                                          labelText: 'E-MAIL',
+                                          enabledBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.transparent))),
+                                    ),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(
+                                            color: Color.fromARGB(
+                                                255, 94, 154, 182),
+                                            width: 4,
+                                            style: BorderStyle.solid)),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 20),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    height: 50,
+                                    child: TextField(
+                                      decoration: InputDecoration(
+                                          labelText: 'PASSWORD',
+                                          enabledBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.transparent))),
+                                    ),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(
+                                            color: Color.fromARGB(
+                                                255, 94, 154, 182),
+                                            width: 4,
+                                            style: BorderStyle.solid)),
+                                  ),
+                                  Container(
+                                    alignment: Alignment.center,
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          setDate != null
+                                              ? Text(
+                                                  "${setDate.day.toString()}-${setDate.month.toString()}-${setDate.year.toString()}",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 18))
+                                              : Text(
+                                                  "Choose Your Date of Birth",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 18),
+                                                ),
+                                          IconButton(
+                                            icon: Icon(
+                                              Icons.calendar_today,
+                                              color: Colors.white,
+                                            ),
+                                            tooltip: 'Tap to open date picker',
+                                            onPressed: () {
+                                              showDatePicker(
+                                                context: context,
+                                                initialDate: DateTime.now(),
+                                                firstDate: DateTime(1901, 8),
+                                                lastDate: DateTime(2101),
+                                              ).then((value) {
+                                                if (value != null) {
+                                                  setState(() {
+                                                    setDate = value;
+                                                  });
+                                                }
+                                              });
+                                            },
+                                          ),
+                                        ]),
+                                  ),
+                                  Container(
+                                      margin:
+                                          EdgeInsets.symmetric(vertical: 25),
+                                      height: 50,
+                                      width: 125,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Color.fromARGB(
+                                                  255, 94, 154, 182),
+                                              side: BorderSide(
+                                                  width: 3,
+                                                  color: Colors.transparent),
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20))),
+                                          child: Center(
+                                              child: Text(
+                                            "Sign Up",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20),
+                                          )),
+                                          onPressed: () {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(SnackBar(
+                                                    content: Text(
+                                                        "Successfully Registered!")));
+                                            Timer(Duration(seconds: 2), () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          LoginScreen()));
+                                            });
+                                          }))
+                                ],
+                              )))
+                    ],
+                  )
+                ],
+              ))),
     );
   }
 }

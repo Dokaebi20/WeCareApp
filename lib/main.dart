@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:ug44/home_screen.dart';
 import 'package:ug44/register_acc_screen.dart';
@@ -30,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     Timer(
-        Duration(milliseconds: 3000),
+        Duration(milliseconds: 250),
         () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => LoginScreen())));
   }
@@ -78,10 +78,17 @@ class MyLoginScreenState extends State<MyLoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          child: Container(
-        color: Color.fromARGB(255, 0, 62, 80),
-        child: Column(
+        body: Container(
+      color: Color.fromARGB(255, 0, 62, 80),
+      child: Stack(children: [
+        Container(
+            height: MediaQuery.of(context).size.height,
+            alignment: Alignment.bottomCenter,
+            child: Image.asset(
+              'assets/wave.png',
+              fit: BoxFit.fitWidth,
+            )),
+        Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Expanded(
@@ -182,8 +189,8 @@ class MyLoginScreenState extends State<MyLoginScreen> {
                       ],
                     )))
           ],
-        ),
-      )),
-    );
+        )
+      ]),
+    ));
   }
 }
