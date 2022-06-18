@@ -112,10 +112,8 @@ class MyRegisterAccScreenState extends State<MyRegisterAccScreen> {
                                   ),
                                   Container(
                                     margin: EdgeInsets.symmetric(vertical: 20),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal:
-                                            MediaQuery.of(context).size.width *
-                                                0.1),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: (20)),
                                     height: 50,
                                     child: TextField(
                                       decoration: InputDecoration(
@@ -134,10 +132,8 @@ class MyRegisterAccScreenState extends State<MyRegisterAccScreen> {
                                             style: BorderStyle.solid)),
                                   ),
                                   Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal:
-                                            MediaQuery.of(context).size.width *
-                                                0.1),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: (20)),
                                     height: 50,
                                     child: TextField(
                                       decoration: InputDecoration(
@@ -157,10 +153,8 @@ class MyRegisterAccScreenState extends State<MyRegisterAccScreen> {
                                   ),
                                   Container(
                                     margin: EdgeInsets.symmetric(vertical: 20),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal:
-                                            MediaQuery.of(context).size.width *
-                                                0.1),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20),
                                     height: 50,
                                     child: TextField(
                                       decoration: InputDecoration(
