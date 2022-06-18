@@ -160,7 +160,7 @@ class MyUserHomeScreenState extends State<MyUserHomeScreen> {
                                     style: BorderStyle.solid),
                                 borderRadius: BorderRadius.circular(10)),
                             child: GridView.count(
-                                mainAxisSpacing: 25,
+                                mainAxisSpacing: 45,
                                 crossAxisCount: 3,
                                 children: assetArr.map((e) {
                                   return Container(
