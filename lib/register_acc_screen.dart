@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ug44/main.dart';
 
 class RegisterAccScreen extends StatelessWidget {
@@ -47,6 +48,15 @@ class MyRegisterAccScreen extends StatefulWidget {
 
 class MyRegisterAccScreenState extends State<MyRegisterAccScreen> {
   var setDate;
+
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

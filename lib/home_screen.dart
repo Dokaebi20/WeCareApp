@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class UserHomeScreen extends StatelessWidget {
   @override
@@ -43,6 +44,14 @@ class MyUserHomeScreen extends StatefulWidget {
 }
 
 class MyUserHomeScreenState extends State<MyUserHomeScreen> {
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
+  }
+
   final List<Map<String, dynamic>> assetArr = [
     {"img": 'assets/vaccineCovidIcon.png', "title": "Covid-19 Vacine "},
     {

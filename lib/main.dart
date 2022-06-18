@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ug44/home_screen.dart';
 import 'package:ug44/register_acc_screen.dart';
 
@@ -29,6 +30,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
     Timer(
         Duration(milliseconds: 3000),
         () => Navigator.push(
@@ -75,6 +80,14 @@ class MyLoginScreen extends StatefulWidget {
 }
 
 class MyLoginScreenState extends State<MyLoginScreen> {
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
