@@ -121,7 +121,7 @@ class MyUserHomeScreenState extends State<MyUserHomeScreen> {
                                   ),
                                 ),
                                 Container(
-                                    padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                    padding: EdgeInsets.fromLTRB(50, 5, 50, 0),
                                     child: Container(
                                       width: 300,
                                       height: 50,
@@ -160,7 +160,7 @@ class MyUserHomeScreenState extends State<MyUserHomeScreen> {
                                     style: BorderStyle.solid),
                                 borderRadius: BorderRadius.circular(10)),
                             child: GridView.count(
-                                mainAxisSpacing: 10,
+                                mainAxisSpacing: 25,
                                 crossAxisCount: 3,
                                 children: assetArr.map((e) {
                                   return Container(
