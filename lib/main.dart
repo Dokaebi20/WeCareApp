@@ -55,7 +55,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '',
+      title: 'Login Screen',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.grey,
@@ -159,6 +159,7 @@ class MyLoginScreenState extends State<MyLoginScreen> {
                               ),
                             )),
                         Container(
+                          margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
                           alignment: Alignment.center,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
