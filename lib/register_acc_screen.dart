@@ -130,8 +130,10 @@ class MyRegisterAccScreenState extends State<MyRegisterAccScreen> {
                                             style: BorderStyle.solid)),
                                   ),
                                   Container(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 20),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal:
+                                            MediaQuery.of(context).size.width *
+                                                0.1),
                                     height: 50,
                                     child: TextField(
                                       decoration: InputDecoration(
@@ -189,6 +191,7 @@ class MyRegisterAccScreenState extends State<MyRegisterAccScreen> {
                                                       fontSize: 18),
                                                 ),
                                           IconButton(
+                                            iconSize: 20,
                                             icon: Icon(
                                               Icons.calendar_today,
                                               color: Colors.white,

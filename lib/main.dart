@@ -102,8 +102,9 @@ class MyLoginScreenState extends State<MyLoginScreen> {
             Expanded(
                 flex: 2,
                 child: Container(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 30, horizontal: 100),
+                    padding: EdgeInsets.symmetric(
+                        vertical: 30,
+                        horizontal: MediaQuery.of(context).size.width * 0.1),
                     child: Column(
                       children: [
                         Container(
@@ -158,7 +159,6 @@ class MyLoginScreenState extends State<MyLoginScreen> {
                               ),
                             )),
                         Container(
-                          margin: EdgeInsets.symmetric(vertical: 15),
                           alignment: Alignment.center,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
