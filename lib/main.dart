@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   image: AssetImage(
                     'assets/SplashScreen.png',
                   ),
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                 ))));
   }
 }
