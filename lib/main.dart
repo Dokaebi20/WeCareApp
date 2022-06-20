@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
       DeviceOrientation.portraitUp,
     ]);
     Timer(
-        Duration(milliseconds: 3000),
+        Duration(milliseconds: 275),
         () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => LoginScreen())));
   }
@@ -121,10 +121,13 @@ class MyLoginScreenState extends State<MyLoginScreen> {
                     child: Column(
                       children: [
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          padding: EdgeInsets.symmetric(horizontal: (20)),
                           height: 50,
                           child: TextField(
                             decoration: InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.symmetric(vertical: 8),
+                                border: InputBorder.none,
                                 labelText: 'E-MAIL',
                                 enabledBorder: UnderlineInputBorder(
                                     borderSide:
@@ -143,7 +146,11 @@ class MyLoginScreenState extends State<MyLoginScreen> {
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           height: 50,
                           child: TextField(
+                            obscureText: true,
                             decoration: InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.symmetric(vertical: 8),
+                                border: InputBorder.none,
                                 labelText: 'PASSWORD',
                                 enabledBorder: UnderlineInputBorder(
                                     borderSide:

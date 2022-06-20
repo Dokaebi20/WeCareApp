@@ -1,6 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ug44/user_account_screen.dart';
+import 'package:ug44/user_account_screen.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class UserHomeScreen extends StatelessWidget {
   @override
@@ -65,6 +68,11 @@ class MyUserHomeScreenState extends State<MyUserHomeScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+    ValueNotifier width_ = ValueNotifier(MediaQuery.of(context).size.width);
+    width_.addListener(() {
+      print(width_.value);
+    });
+    print(width_.value);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 0, 62, 80),
@@ -72,7 +80,14 @@ class MyUserHomeScreenState extends State<MyUserHomeScreen> {
           actions: [
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Image(image: AssetImage('assets/accountIcon.png')))
+                child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UserAccountScreen()));
+                    },
+                    child: Image(image: AssetImage('assets/accountIcon.png'))))
           ],
           title: Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -98,107 +113,79 @@ class MyUserHomeScreenState extends State<MyUserHomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Expanded(
-                          flex: 1,
-                          child: Container(
-                            alignment: Alignment.bottomLeft,
-                            margin: EdgeInsets.all(30),
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 254, 244, 232),
-                                border: Border.all(
-                                    color: Colors.transparent,
-                                    width: 1,
-                                    style: BorderStyle.solid),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              color: Colors.black,
-                                              width: 3,
-                                              style: BorderStyle.solid))),
-                                  margin: EdgeInsets.symmetric(horizontal: 50),
-                                  alignment: Alignment.bottomLeft,
-                                  child: Text(
-                                    'Hi, .....',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Container(
-                                    padding: EdgeInsets.fromLTRB(50, 5, 50, 0),
-                                    child: Container(
-                                      width: 300,
-                                      height: 50,
-                                      child: ElevatedButton(
-                                          onPressed: () {},
-                                          style: ElevatedButton.styleFrom(
-                                              side: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1,
-                                                  style: BorderStyle.solid),
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          300)),
-                                              primary: Color.fromARGB(
-                                                  255, 197, 218, 230)),
-                                          child: Text(
-                                            "Account",
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black),
-                                          )),
-                                    ))
-                              ],
-                            ),
-                          )),
+                        flex: 1,
+                        child: CarouselSlider(
+                          options: CarouselOptions(
+                            viewportFraction: 1,
+                            autoPlay: true,
+                            height: 250,
+                          ),
+                          items: [
+                            'assets/maskerCover.jpg',
+                            'assets/weCareCover.jpg',
+                            'assets/ omicronCover.jpg'
+                          ].map((i) {
+                            return Container(
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(40),
+                                  child: ColorFiltered(
+                                      colorFilter: ColorFilter.mode(
+                                          Color.fromARGB(123, 76, 175, 79),
+                                          BlendMode.color),
+                                      child: Image(
+                                        image: AssetImage(i),
+                                        fit: BoxFit.fill,
+                                      ))),
+                            );
+                          }).toList(),
+                        ),
+                      ),
                       Expanded(
                           flex: 3,
                           child: Container(
-                            padding: EdgeInsets.all(30),
+                            alignment: Alignment.topCenter,
+                            padding: EdgeInsets.all(20),
                             decoration: BoxDecoration(
                                 border: Border.all(
                                     color: Colors.transparent,
                                     width: 1,
                                     style: BorderStyle.solid),
                                 borderRadius: BorderRadius.circular(10)),
-                            child: GridView.count(
-                                mainAxisSpacing: 45,
-                                crossAxisCount: 3,
-                                children: assetArr.map((e) {
-                                  return Container(
-                                    child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 5),
-                                              child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                  child: Image(
-                                                      width: 80,
-                                                      height: 75,
-                                                      image: AssetImage(
-                                                          '${e['img']}')))),
-                                          Container(
-                                            width: 75,
-                                            child: Text('${e['title']}',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 15)),
-                                          )
-                                        ]),
-                                  );
-                                }).toList()),
+                            child: Center(
+                                child: GridView.count(
+                                    shrinkWrap: false,
+                                    mainAxisSpacing: 25,
+                                    crossAxisCount: width_.value >= 550 ? 4 : 3,
+                                    children: assetArr.map((e) {
+                                      return Container(
+                                        child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical: 5),
+                                                  child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15),
+                                                      child: Image(
+                                                          width: 80,
+                                                          height: 75,
+                                                          image: AssetImage(
+                                                              '${e['img']}')))),
+                                              Container(
+                                                width: 75,
+                                                child: Text('${e['title']}',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 15)),
+                                              )
+                                            ]),
+                                      );
+                                    }).toList())),
                           ))
                     ],
                   )
