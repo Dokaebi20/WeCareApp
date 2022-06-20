@@ -10,6 +10,8 @@ class RegisterAccScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Register Account',
+      scrollBehavior:
+          ScrollConfiguration.of(context).copyWith(scrollbars: false),
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -89,24 +91,30 @@ class MyRegisterAccScreenState extends State<MyRegisterAccScreen> {
                         fit: BoxFit.fitWidth,
                       )),
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Expanded(
-                          flex: 1,
+                          flex: 4,
                           child: Container(
                               padding: EdgeInsets.symmetric(
                                   vertical: 30,
                                   horizontal:
                                       MediaQuery.of(context).size.width * 0.1),
-                              child: Column(
+                              child: ListView(
+                                shrinkWrap: true,
+                                // mainAxisAlignment:
+                                //     MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
+                                    margin: EdgeInsets.symmetric(vertical: 5),
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 20),
                                     height: 50,
                                     child: TextField(
                                       decoration: InputDecoration(
-                                          labelText: 'NAMA LENGKAP',
+                                          contentPadding:
+                                              EdgeInsets.symmetric(vertical: 8),
+                                          border: InputBorder.none,
+                                          labelText: 'FULL NAME',
                                           enabledBorder: UnderlineInputBorder(
                                               borderSide: BorderSide(
                                                   color: Colors.transparent))),
@@ -121,12 +129,22 @@ class MyRegisterAccScreenState extends State<MyRegisterAccScreen> {
                                             style: BorderStyle.solid)),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 20),
+                                    margin: EdgeInsets.symmetric(vertical: 5),
                                     padding:
-                                        EdgeInsets.symmetric(horizontal: (20)),
+                                        EdgeInsets.symmetric(horizontal: 20),
                                     height: 50,
                                     child: TextField(
+                                      maxLength: 16,
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(
+                                            RegExp(r'[0-9]')),
+                                      ],
                                       decoration: InputDecoration(
+                                          counterText: '',
+                                          contentPadding:
+                                              EdgeInsets.symmetric(vertical: 8),
+                                          border: InputBorder.none,
                                           labelText: 'NIK',
                                           enabledBorder: UnderlineInputBorder(
                                               borderSide: BorderSide(
@@ -142,51 +160,11 @@ class MyRegisterAccScreenState extends State<MyRegisterAccScreen> {
                                             style: BorderStyle.solid)),
                                   ),
                                   Container(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: (20)),
-                                    height: 50,
-                                    child: TextField(
-                                      decoration: InputDecoration(
-                                          labelText: 'E-MAIL',
-                                          enabledBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.transparent))),
-                                    ),
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(20),
-                                        border: Border.all(
-                                            color: Color.fromARGB(
-                                                255, 94, 154, 182),
-                                            width: 4,
-                                            style: BorderStyle.solid)),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.symmetric(vertical: 20),
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 20),
-                                    height: 50,
-                                    child: TextField(
-                                      decoration: InputDecoration(
-                                          labelText: 'PASSWORD',
-                                          enabledBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.transparent))),
-                                    ),
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(20),
-                                        border: Border.all(
-                                            color: Color.fromARGB(
-                                                255, 94, 154, 182),
-                                            width: 4,
-                                            style: BorderStyle.solid)),
-                                  ),
-                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 5),
                                     alignment: Alignment.center,
                                     child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           setDate != null
                                               ? Text(
@@ -196,6 +174,7 @@ class MyRegisterAccScreenState extends State<MyRegisterAccScreen> {
                                                       fontSize: 18))
                                               : Text(
                                                   "Choose Your Date of Birth",
+                                                  textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 18),
@@ -225,43 +204,149 @@ class MyRegisterAccScreenState extends State<MyRegisterAccScreen> {
                                         ]),
                                   ),
                                   Container(
-                                      margin:
-                                          EdgeInsets.symmetric(vertical: 25),
-                                      height: 50,
-                                      width: 125,
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              primary: Color.fromARGB(
-                                                  255, 94, 154, 182),
-                                              side: BorderSide(
-                                                  width: 3,
-                                                  color: Colors.transparent),
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20))),
-                                          child: Center(
-                                              child: Text(
-                                            "Sign Up",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20),
-                                          )),
-                                          onPressed: () {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(SnackBar(
-                                                    content: Text(
-                                                        "Successfully Registered!")));
-                                            Timer(Duration(seconds: 2), () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          LoginScreen()));
-                                            });
-                                          }))
+                                    margin: EdgeInsets.symmetric(vertical: 5),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: (20)),
+                                    height: 50,
+                                    child: TextField(
+                                      maxLength: 11,
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(
+                                            RegExp(r'[0-9]')),
+                                      ],
+                                      decoration: InputDecoration(
+                                          counterText: '',
+                                          contentPadding:
+                                              EdgeInsets.symmetric(vertical: 8),
+                                          border: InputBorder.none,
+                                          labelText: 'No Hp.',
+                                          enabledBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.transparent))),
+                                    ),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(
+                                            color: Color.fromARGB(
+                                                255, 94, 154, 182),
+                                            width: 4,
+                                            style: BorderStyle.solid)),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 5),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: (20)),
+                                    height: 50,
+                                    child: TextField(
+                                      decoration: InputDecoration(
+                                          counterText: '',
+                                          contentPadding:
+                                              EdgeInsets.symmetric(vertical: 8),
+                                          border: InputBorder.none,
+                                          labelText: 'E-MAIL',
+                                          enabledBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.transparent))),
+                                    ),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(
+                                            color: Color.fromARGB(
+                                                255, 94, 154, 182),
+                                            width: 4,
+                                            style: BorderStyle.solid)),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 5),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    height: 50,
+                                    child: TextField(
+                                      obscureText: true,
+                                      decoration: InputDecoration(
+                                          contentPadding:
+                                              EdgeInsets.symmetric(vertical: 8),
+                                          border: InputBorder.none,
+                                          labelText: 'PASSWORD',
+                                          enabledBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.transparent))),
+                                    ),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(
+                                            color: Color.fromARGB(
+                                                255, 94, 154, 182),
+                                            width: 4,
+                                            style: BorderStyle.solid)),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 5),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    height: 50,
+                                    child: TextField(
+                                      obscureText: true,
+                                      decoration: InputDecoration(
+                                          contentPadding:
+                                              EdgeInsets.symmetric(vertical: 8),
+                                          border: InputBorder.none,
+                                          labelText: 'CONFIRM PASSWORD',
+                                          enabledBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.transparent))),
+                                    ),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(
+                                            color: Color.fromARGB(
+                                                255, 94, 154, 182),
+                                            width: 4,
+                                            style: BorderStyle.solid)),
+                                  ),
                                 ],
-                              )))
+                              ))),
+                      Expanded(
+                          flex: 1,
+                          child: Container(
+                              alignment: Alignment.topCenter,
+                              child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      fixedSize: Size(
+                                          MediaQuery.of(context).size.width *
+                                              0.8,
+                                          50),
+                                      primary:
+                                          Color.fromARGB(255, 94, 154, 182),
+                                      side: BorderSide(
+                                          width: 3, color: Colors.transparent),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20))),
+                                  child: Center(
+                                      child: Text(
+                                    "Sign Up",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  )),
+                                  onPressed: () {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            content: Text(
+                                                "Successfully Registered!")));
+                                    Timer(Duration(seconds: 2), () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  LoginScreen()));
+                                    });
+                                  })))
                     ],
                   )
                 ],
