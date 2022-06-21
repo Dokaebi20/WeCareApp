@@ -143,6 +143,13 @@ class MyVaccineCertificateScreenState
                                       height: e['isOpen'] ? null : null,
                                       margin: EdgeInsets.only(top: 10),
                                       decoration: BoxDecoration(
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: Colors.black54,
+                                                spreadRadius: 3,
+                                                blurRadius: 10,
+                                                blurStyle: BlurStyle.normal)
+                                          ],
                                           color: Colors.white,
                                           borderRadius:
                                               BorderRadius.circular(10),
