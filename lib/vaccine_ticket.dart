@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:ug44/home_screen.dart';
 import 'package:ug44/main.dart';
 
-class UserAccountScreen extends StatelessWidget {
+class VaccineTicketScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,13 +27,13 @@ class UserAccountScreen extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: const MyUserAccountScreen(title: 'Account'),
+      home: const MyVaccineTicketScreen(title: 'Account'),
     );
   }
 }
 
-class MyUserAccountScreen extends StatefulWidget {
-  const MyUserAccountScreen({Key? key, required this.title}) : super(key: key);
+class MyVaccineTicketScreen extends StatefulWidget {
+  const MyVaccineTicketScreen({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -47,12 +47,12 @@ class MyUserAccountScreen extends StatefulWidget {
   final String title;
 
   @override
-  State<MyUserAccountScreen> createState() => MyUserAccountScreenState();
+  State<MyVaccineTicketScreen> createState() => MyVaccineTicketScreenState();
 }
 
-class MyUserAccountScreenState extends State<MyUserAccountScreen> {
+class MyVaccineTicketScreenState extends State<MyVaccineTicketScreen> {
   var userName = 'User';
-  var noHP = '+621234567890';
+  var noHP = '+61234567890';
   var isEditable = false;
   var setDate;
   final _noHPController = TextEditingController();
@@ -445,11 +445,6 @@ class MyUserAccountScreenState extends State<MyUserAccountScreen> {
                                                         noHP =
                                                             '+62${_noHPController.text}';
                                                         isEditable = false;
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(SnackBar(
-                                                                content: Text(
-                                                                    "Successfully Registered!")));
                                                       }
                                                     });
                                                   }),
@@ -488,7 +483,6 @@ class MyUserAccountScreenState extends State<MyUserAccountScreen> {
                                                   })
                                             ]))
                                     : Container(
-                                        margin: EdgeInsets.only(top: 10),
                                         alignment: Alignment.topCenter,
                                         child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(

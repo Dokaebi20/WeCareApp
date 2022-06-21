@@ -1,15 +1,24 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ug44/covid_vaccine.dart';
 import 'package:ug44/user_account_screen.dart';
 import 'package:ug44/user_account_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ug44/vaccine_certificate.dart';
+import 'package:ug44/vaccine_news.dart';
+import 'package:ug44/vaccine_place.dart';
+import 'package:ug44/vaccine_register.dart';
+import 'package:ug44/vaccine_ticket.dart';
+import 'package:ug44/vaccine_certificate.dart';
 
 class UserHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Home',
+      scrollBehavior:
+          ScrollConfiguration.of(context).copyWith(scrollbars: false),
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -56,15 +65,36 @@ class MyUserHomeScreenState extends State<MyUserHomeScreen> {
   }
 
   final List<Map<String, dynamic>> assetArr = [
-    {"img": 'assets/vaccineCovidIcon.png', "title": "Covid-19 Vacine "},
+    {
+      "img": 'assets/vaccineCovidIcon.png',
+      "title": "Covid-19 Vacine ",
+      "ref": CovidVaccineScreen()
+    },
     {
       "img": 'assets/vaccineCertificateIcon.png',
-      "title": "Vaccine Certificate"
+      "title": "Vaccine Certificate",
+      "ref": VaccineCertificateScreen()
     },
-    {"img": 'assets/vaccineNewsIcon.png', "title": "Vaccine News"},
-    {"img": 'assets/vaccineRegisterIcon.png', "title": "Vaccine Register"},
-    {"img": 'assets/vaccineTicketIcon.png', "title": "Vaccine Ticket "},
-    {"img": 'assets/vaccinePlaceIcon.png', "title": "Vaccine Place "},
+    {
+      "img": 'assets/vaccineNewsIcon.png',
+      "title": "Vaccine News",
+      "ref": VaccineNewsScreen()
+    },
+    {
+      "img": 'assets/vaccineRegisterIcon.png',
+      "title": "Vaccine Register",
+      "ref": VaccineRegisterScreen()
+    },
+    {
+      "img": 'assets/vaccineTicketIcon.png',
+      "title": "Vaccine Ticket ",
+      "ref": VaccineTicketScreen()
+    },
+    {
+      "img": 'assets/vaccinePlaceIcon.png',
+      "title": "Vaccine Place ",
+      "ref": VaccinePlaceScreen()
+    },
   ];
   @override
   Widget build(BuildContext context) {
@@ -79,7 +109,8 @@ class MyUserHomeScreenState extends State<MyUserHomeScreen> {
           shadowColor: Colors.transparent,
           actions: [
             Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsetsDirectional.only(
+                    end: MediaQuery.of(context).size.width * 0.05),
                 child: InkWell(
                     onTap: () {
                       Navigator.push(
@@ -87,7 +118,19 @@ class MyUserHomeScreenState extends State<MyUserHomeScreen> {
                           MaterialPageRoute(
                               builder: (context) => UserAccountScreen()));
                     },
-                    child: Image(image: AssetImage('assets/accountIcon.png'))))
+                    child: Container(
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black54,
+                                  spreadRadius: 2,
+                                  blurRadius: 10)
+                            ]),
+                        child: CircleAvatar(
+                          radius: 23,
+                          backgroundImage: AssetImage('assets/accountIcon.png'),
+                        ))))
           ],
           title: Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -113,36 +156,55 @@ class MyUserHomeScreenState extends State<MyUserHomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Expanded(
-                        flex: 1,
-                        child: CarouselSlider(
-                          options: CarouselOptions(
-                            viewportFraction: 1,
-                            autoPlay: true,
-                            height: 250,
-                          ),
-                          items: [
-                            'assets/maskerCover.jpg',
-                            'assets/weCareCover.jpg',
-                            'assets/ omicronCover.jpg'
-                          ].map((i) {
-                            return Container(
-                              width: MediaQuery.of(context).size.width * 0.8,
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(40),
-                                  child: ColorFiltered(
-                                      colorFilter: ColorFilter.mode(
-                                          Color.fromARGB(123, 76, 175, 79),
-                                          BlendMode.color),
-                                      child: Image(
-                                        image: AssetImage(i),
-                                        fit: BoxFit.fill,
-                                      ))),
-                            );
-                          }).toList(),
-                        ),
+                        flex: 2,
+                        child: Container(
+                            margin: EdgeInsetsDirectional.only(top: 15),
+                            padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    MediaQuery.of(context).size.width * 0.1),
+                            child: CarouselSlider(
+                              options: CarouselOptions(
+                                scrollDirection: Axis.vertical,
+                                autoPlayInterval: Duration(milliseconds: 3250),
+                                autoPlayAnimationDuration:
+                                    Duration(milliseconds: 800),
+                                autoPlayCurve: Curves.easeOut,
+                                viewportFraction: 1,
+                                autoPlay: true,
+                                height: 250,
+                              ),
+                              items: [
+                                'assets/pakaiMaskerCover3.jpg',
+                                'assets/pakaiMaskerCover2.jpg',
+                                'assets/pakaiMaskerCover.jpg'
+                              ].map((i) {
+                                return Container(
+                                  decoration: BoxDecoration(boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black26,
+                                        blurRadius: 20,
+                                        spreadRadius: 3,
+                                        blurStyle: BlurStyle.normal)
+                                  ]),
+                                  margin: EdgeInsets.only(top: 15),
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.875,
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: ColorFiltered(
+                                          colorFilter: ColorFilter.mode(
+                                              Color.fromARGB(50, 76, 175, 79),
+                                              BlendMode.color),
+                                          child: Image(
+                                            image: AssetImage(i),
+                                            fit: BoxFit.fill,
+                                          ))),
+                                );
+                              }).toList(),
+                            )),
                       ),
                       Expanded(
-                          flex: 3,
+                          flex: 5,
                           child: Container(
                             alignment: Alignment.topCenter,
                             padding: EdgeInsets.all(20),
@@ -180,15 +242,25 @@ class MyUserHomeScreenState extends State<MyUserHomeScreen> {
                                                                     BlurStyle
                                                                         .normal),
                                                           ]),
-                                                      child: ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(15),
-                                                          child: Image(
-                                                              width: 80,
-                                                              height: 75,
-                                                              image: AssetImage(
-                                                                  '${e['img']}'))))),
+                                                      child: InkWell(
+                                                          onTap: () {
+                                                            Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                    builder:
+                                                                        ((context) =>
+                                                                            e['ref'])));
+                                                          },
+                                                          child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          12),
+                                                              child: Image(
+                                                                  width: 80,
+                                                                  height: 75,
+                                                                  image: AssetImage(
+                                                                      '${e['img']}')))))),
                                               Container(
                                                 width: 75,
                                                 child: Text('${e['title']}',
