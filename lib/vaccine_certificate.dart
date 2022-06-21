@@ -10,8 +10,6 @@ import 'package:ug44/home_screen.dart';
 import 'package:ug44/main.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'dart:math';
-import 'dart:convert';
-import 'package:crypto/crypto.dart';
 
 class VaccineCertificateScreen extends StatelessWidget {
   @override
@@ -62,22 +60,21 @@ class MyVaccineCertificateScreenState
     extends State<MyVaccineCertificateScreen> {
   final List<Map<String, dynamic>> certificateArr = [
     {
-      'image': 'assets/vaccineCertificateExample.jpg',
-      'isOpen': true,
-      'token': utf8.encode(Random().nextDouble().toString())
+      'img': 'assets/vaccineCertificateExample.jpg',
+      'isOpen': false,
+      'token': Random().nextDouble() * 2
     },
     {
-      'image': 'assets/vaccineCertificateExample.jpg',
-      'isOpen': true,
-      'token': utf8.encode(Random().nextDouble().toString())
+      'img': 'assets/vaccineCertificateExample.jpg',
+      'isOpen': false,
+      'token': Random().nextDouble() * 2
     },
     {
-      'image': 'assets/vaccineCertificateExample.jpg',
-      'isOpen': true,
-      'token': utf8.encode(Random().nextDouble().toString())
+      'img': 'assets/vaccineCertificateExample.jpg',
+      'isOpen': false,
+      'token': Random().nextDouble() * 2
     },
   ];
-  var counter_ = 1;
 
   void initState() {
     super.initState();
@@ -118,44 +115,83 @@ class MyVaccineCertificateScreenState
                         fit: BoxFit.fitWidth,
                       )),
                   Container(
-                      padding: EdgeInsets.all(
-                          MediaQuery.of(context).size.width * 0.1),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.05,
+                          vertical: MediaQuery.of(context).size.height * 0.00),
                       child: ListView(
                         children: certificateArr.map((e) {
                           return InkWell(
                               onTap: () {
-                                e['isOpen']
-                                    ? e['isOpen'] = false
-                                    : e['isOpen'] = true;
+                                setState(() {
+                                  certificateArr.forEach((el) => {
+                                        el['token'] == e['token']
+                                            ? null
+                                            : el['isOpen'] = false
+                                      });
+                                  e['isOpen']
+                                      ? e['isOpen'] = false
+                                      : e['isOpen'] = true;
+                                });
                               },
                               onLongPress: () {
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                     content: Text(
-                                        "Vaccine Certificated #${certificateArr.indexWhere((el) => el['token'] == e['token'])} Have Been Saved to Your Local Storage")));
+                                        "Vaccine Certificated #${certificateArr.indexWhere((el) => el['token'] == e['token']) + 1} Have Been Saved to Your Local Storage")));
                               },
-                              child: Container(
-                                  margin: EdgeInsets.only(top: 10),
-                                  padding: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(20),
-                                      border: Border.all(
-                                          color: Colors.transparent,
-                                          width: 1,
-                                          style: BorderStyle.solid)),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                          child: Text(
-                                        'Vaccine #${counter_++}',
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold),
-                                      ))
-                                    ],
-                                  )));
+                              child: Expanded(
+                                  child: Container(
+                                      height: e['isOpen'] ? null : null,
+                                      margin: EdgeInsets.only(top: 10),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          border: Border.all(
+                                              color: Colors.transparent,
+                                              width: 1,
+                                              style: BorderStyle.solid)),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                              alignment: Alignment.center,
+                                              height: 30,
+                                              child: Text(
+                                                'Vaccine #${certificateArr.indexWhere((el) => el['token'] == e['token']) + 1}',
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              )),
+                                          e['isOpen']
+                                              ? Container(
+                                                  margin:
+                                                      EdgeInsets.only(top: 10),
+                                                  child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              30),
+                                                      child: Image(
+                                                          image: AssetImage(
+                                                              'assets/vaccineCertificateExample90.png'))),
+                                                  height: 700,
+                                                )
+                                              : Container(
+                                                  margin:
+                                                      EdgeInsets.only(top: 10),
+                                                  child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image(
+                                                        image: AssetImage(
+                                                            '${e['img']}'),
+                                                        fit: BoxFit.fitWidth,
+                                                      )),
+                                                )
+                                        ],
+                                      ))));
                         }).toList(),
                       ))
                 ],
