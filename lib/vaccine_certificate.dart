@@ -15,7 +15,7 @@ class VaccineCertificateScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Covid Vaccine',
+      title: 'Vaccine Certificate',
       scrollBehavior:
           ScrollConfiguration.of(context).copyWith(scrollbars: false),
       theme: ThemeData(
@@ -31,7 +31,7 @@ class VaccineCertificateScreen extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: const MyVaccineCertificateScreen(title: 'Covid Vaccine'),
+      home: const MyVaccineCertificateScreen(title: 'Vaccine Certificate'),
     );
   }
 }

@@ -38,9 +38,14 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  dio : ^4.0.0
+  flutter_polyline_points: ^0.2.6
   flutter_svg: ^1.1.0
+  google_maps_flutter : ^2.0.2
   carousel_slider : ^4.1.1
+  dotted_border: ^2.0.0
+  dotted_decoration: ^2.0.0
+  flutter_countdown_timer: ^4.1.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

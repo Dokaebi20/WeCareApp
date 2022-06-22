@@ -1,19 +1,19 @@
 import 'dart:async';
-import 'dart:html';
-import 'dart:isolate';
 import 'dart:math';
 
+import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ug44/home_screen.dart';
-import 'package:ug44/main.dart';
 
 class VaccinePlaceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Account',
+      title: 'Vaccine Certificate',
+      scrollBehavior:
+          ScrollConfiguration.of(context).copyWith(scrollbars: false),
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -27,7 +27,7 @@ class VaccinePlaceScreen extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: const MyVaccinePlaceScreen(title: 'Account'),
+      home: const MyVaccinePlaceScreen(title: 'Vaccine Certificate'),
     );
   }
 }
@@ -51,11 +51,24 @@ class MyVaccinePlaceScreen extends StatefulWidget {
 }
 
 class MyVaccinePlaceScreenState extends State<MyVaccinePlaceScreen> {
-  var userName = 'User';
-  var noHP = '+61234567890';
-  var isEditable = false;
-  var setDate;
-  final _noHPController = TextEditingController();
+  var var4PlaceLoc;
+  final List<Map<String, dynamic>> ticketArr = [
+    {
+      'img': 'assets/vaccineTicketExample.jpg',
+      'isOpen': false,
+      'token': Random().nextDouble() * 2
+    },
+    {
+      'img': 'assets/vaccineTicketExample.jpg',
+      'isOpen': false,
+      'token': Random().nextDouble() * 2
+    },
+    {
+      'img': 'assets/vaccineTicketExample.jpg',
+      'isOpen': false,
+      'token': Random().nextDouble() * 2
+    },
+  ];
 
   void initState() {
     super.initState();
@@ -65,14 +78,6 @@ class MyVaccinePlaceScreenState extends State<MyVaccinePlaceScreen> {
     ]);
   }
 
-  final List<Map<String, dynamic>> assetArr = [
-    {
-      "img": 'assets/vaccineCertificateIcon.png',
-      "title": "Vaccine Certificate"
-    },
-    {"img": 'assets/vaccineTicketIcon.png', "title": "Vaccine Ticket "},
-    {"img": 'assets/rateUsIcon.png', "title": "Rate Us "},
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +96,9 @@ class MyVaccinePlaceScreenState extends State<MyVaccinePlaceScreen> {
           )),
         ),
         body: SafeArea(
+            child: Expanded(
           child: Container(
+              alignment: Alignment.center,
               color: Color.fromARGB(255, 0, 62, 80),
               padding: EdgeInsets.all(0),
               child: Stack(
@@ -103,424 +110,98 @@ class MyVaccinePlaceScreenState extends State<MyVaccinePlaceScreen> {
                         fit: BoxFit.fitWidth,
                       )),
                   Container(
-                      padding: EdgeInsets.all(20),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                                flex: 1,
-                                child: Container(
-                                    alignment: Alignment.center,
-                                    child: Column(children: [
-                                      Container(
-                                          child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.2,
-                                              alignment: Alignment.topCenter,
-                                              child: Image.asset(
-                                                  'assets/accountIcon.png')),
-                                          Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.6,
-                                              alignment: Alignment.center,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    '${userName}',
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 20),
-                                                  ),
-                                                  Text(
-                                                    '${noHP}',
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 20),
-                                                  )
-                                                ],
-                                              )),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.1,
-                                            alignment: Alignment.centerLeft,
-                                            child: InkWell(
-                                                onTap: () {
+                      height: 550,
+                      padding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.05,
+                          vertical: MediaQuery.of(context).size.height * 0.05),
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black38,
+                                  spreadRadius: 3,
+                                  blurRadius: 10,
+                                  blurStyle: BlurStyle.normal)
+                            ],
+                            border: Border.all(
+                                color: Colors.transparent,
+                                width: 1,
+                                style: BorderStyle.solid),
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                  flex: 1,
+                                  child: Container(
+                                      child: DropdownButtonHideUnderline(
+                                          child: ButtonTheme(
+                                              alignedDropdown: true,
+                                              child: DropdownButton<String>(
+                                                dropdownColor: Color.fromARGB(
+                                                    215, 255, 255, 255),
+                                                hint: Text(
+                                                  'Vaccine Location',
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 20),
+                                                ),
+                                                isExpanded: true,
+                                                value: var4PlaceLoc,
+                                                icon: const Icon(
+                                                  Icons.arrow_downward,
+                                                  color: Colors.black,
+                                                ),
+                                                elevation: 16,
+                                                style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 20),
+                                                onChanged: (String? newValue) {
                                                   setState(() {
-                                                    isEditable = true;
-                                                    _noHPController.text =
-                                                        noHP.substring(3);
+                                                    var4PlaceLoc = newValue!;
                                                   });
                                                 },
-                                                child: Image(
-                                                    image: AssetImage(
-                                                        'assets/pencilEditIcon.png'))),
-                                            height: 20,
-                                          )
-                                        ],
-                                      )),
-                                    ]))),
-                            Expanded(
-                                flex: 2,
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text(
-                                          'Scan QR Code',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 20),
-                                        ),
-                                        Image.asset(
-                                          'assets/QRCode.png',
-                                          width: 120,
-                                          height: 120,
-                                        )
-                                      ]),
-                                )),
-                            Expanded(
-                                flex: 3,
-                                child: Container(
-                                  alignment: Alignment.topCenter,
-                                  child: ListView(
-                                      children: isEditable
-                                          ? [
-                                              Container(
-                                                margin: EdgeInsets.symmetric(
-                                                    vertical: 5),
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: (20)),
-                                                height: 50,
-                                                child: TextField(
-                                                  controller: _noHPController,
-                                                  keyboardType:
-                                                      TextInputType.number,
-                                                  maxLength: 11,
-                                                  inputFormatters: <
-                                                      TextInputFormatter>[
-                                                    FilteringTextInputFormatter
-                                                        .allow(
-                                                            RegExp(r'[0-9]')),
-                                                  ],
-                                                  decoration: InputDecoration(
-                                                      counterText: '',
-                                                      contentPadding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 8),
-                                                      border: InputBorder.none,
-                                                      labelText: 'No Hp.',
-                                                      enabledBorder:
-                                                          UnderlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                  color: Colors
-                                                                      .transparent))),
-                                                ),
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
-                                                    border: Border.all(
-                                                        color: Color.fromARGB(
-                                                            255, 94, 154, 182),
-                                                        width: 4,
-                                                        style:
-                                                            BorderStyle.solid)),
-                                              ),
-                                              Container(
-                                                margin: EdgeInsets.symmetric(
-                                                    vertical: 5),
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: (20)),
-                                                height: 50,
-                                                child: TextField(
-                                                  decoration: InputDecoration(
-                                                      contentPadding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 8),
-                                                      border: InputBorder.none,
-                                                      labelText: 'E-MAIL',
-                                                      enabledBorder:
-                                                          UnderlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                  color: Colors
-                                                                      .transparent))),
-                                                ),
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
-                                                    border: Border.all(
-                                                        color: Color.fromARGB(
-                                                            255, 94, 154, 182),
-                                                        width: 4,
-                                                        style:
-                                                            BorderStyle.solid)),
-                                              ),
-                                              Container(
-                                                margin: EdgeInsets.symmetric(
-                                                    vertical: 5),
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 20),
-                                                height: 50,
-                                                child: TextField(
-                                                  obscureText: true,
-                                                  decoration: InputDecoration(
-                                                      contentPadding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 8),
-                                                      border: InputBorder.none,
-                                                      labelText: 'PASSWORD',
-                                                      enabledBorder:
-                                                          UnderlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                  color: Colors
-                                                                      .transparent))),
-                                                ),
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
-                                                    border: Border.all(
-                                                        color: Color.fromARGB(
-                                                            255, 94, 154, 182),
-                                                        width: 4,
-                                                        style:
-                                                            BorderStyle.solid)),
-                                              ),
-                                              Container(
-                                                margin: EdgeInsets.symmetric(
-                                                    vertical: 5),
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 20),
-                                                height: 50,
-                                                child: TextField(
-                                                  obscureText: true,
-                                                  decoration: InputDecoration(
-                                                      contentPadding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 8),
-                                                      border: InputBorder.none,
-                                                      labelText:
-                                                          'CONFIRM PASSWORD',
-                                                      enabledBorder:
-                                                          UnderlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                  color: Colors
-                                                                      .transparent))),
-                                                ),
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
-                                                    border: Border.all(
-                                                        color: Color.fromARGB(
-                                                            255, 94, 154, 182),
-                                                        width: 4,
-                                                        style:
-                                                            BorderStyle.solid)),
-                                              )
-                                            ]
-                                          : assetArr.map((e) {
-                                              return Container(
-                                                  padding: EdgeInsets.all(10),
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                              color: Colors
-                                                                  .black54,
-                                                              offset:
-                                                                  Offset.zero,
-                                                              blurRadius: 10,
-                                                              spreadRadius: 2,
-                                                              blurStyle:
-                                                                  BlurStyle
-                                                                      .normal),
-                                                        ],
-                                                        color: Colors.white,
-                                                        border: Border.all(
-                                                            color: Colors
-                                                                .transparent,
-                                                            width: 1,
-                                                            style: BorderStyle
-                                                                .solid),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10)),
-                                                    padding: EdgeInsets.all(5),
-                                                    child: Row(children: [
-                                                      Image.asset(
-                                                        '${e['img']}',
-                                                        width: 50,
-                                                        height: 50,
-                                                      ),
-                                                      Container(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            0.675,
-                                                        alignment:
-                                                            Alignment.center,
-                                                        child: Text(
-                                                          "${e["title"]}",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 20,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      )
-                                                    ]),
-                                                  ));
-                                            }).toList()),
-                                )),
-                            Expanded(
-                                flex: 2,
-                                child: isEditable
-                                    ? Container(
-                                        alignment: Alignment.topCenter,
-                                        child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              ElevatedButton(
-                                                  style: ElevatedButton.styleFrom(
-                                                      fixedSize: Size(
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.4,
-                                                          50),
-                                                      primary: Color.fromARGB(
-                                                          255, 94, 154, 182),
-                                                      side: BorderSide(
-                                                          width: 3,
-                                                          color: Colors
-                                                              .transparent),
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20))),
-                                                  child: Center(
-                                                      child: Text(
-                                                    "Accept",
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 20),
-                                                  )),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      if (noHP != null) {
-                                                        noHP =
-                                                            '+62${_noHPController.text}';
-                                                        isEditable = false;
-                                                      }
-                                                    });
-                                                  }),
-                                              ElevatedButton(
-                                                  style: ElevatedButton.styleFrom(
-                                                      fixedSize: Size(
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.4,
-                                                          50),
-                                                      primary: Color.fromARGB(
-                                                          255, 94, 154, 182),
-                                                      side: BorderSide(
-                                                          width: 3,
-                                                          color: Colors
-                                                              .transparent),
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20))),
-                                                  child: Center(
-                                                      child: Text(
-                                                    "Cancel",
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 20),
-                                                  )),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      isEditable = false;
-                                                    });
-                                                    ;
-                                                  })
-                                            ]))
-                                    : Container(
-                                        alignment: Alignment.topCenter,
-                                        child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                fixedSize: Size(
-                                                    MediaQuery.of(context)
-                                                            .size
-                                                            .width *
-                                                        0.8,
-                                                    50),
-                                                primary: Color.fromARGB(
-                                                    255, 94, 154, 182),
-                                                side: BorderSide(
-                                                    width: 3,
-                                                    color: Colors.transparent),
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20))),
-                                            child: Center(
-                                                child: Text(
-                                              "Sign Out",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20),
-                                            )),
-                                            onPressed: () {
-                                              Timer(Duration(milliseconds: 200),
-                                                  () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            LoginScreen()));
-                                              });
-                                            })))
-                          ]))
+                                                items: <String>[
+                                                  'RS Dr. Kariadi',
+                                                  'RS Elizabeth',
+                                                  'RS Panti Wilasa'
+                                                ].map<DropdownMenuItem<String>>(
+                                                    (value) {
+                                                  return DropdownMenuItem<
+                                                      String>(
+                                                    value: value,
+                                                    child: Text(value),
+                                                  );
+                                                }).toList(),
+                                              ))))),
+                              Expanded(
+                                  flex: 4,
+                                  child: Container(
+                                      alignment: Alignment.center,
+                                      padding: EdgeInsets.all(10),
+                                      child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          child: var4PlaceLoc ==
+                                                  'RS Dr. Kariadi'
+                                              ? Image.asset(
+                                                  'assets/vaccineLocationRSKariadi.jpg',
+                                                )
+                                              : (var4PlaceLoc == 'RS Elizabeth'
+                                                  ? Image.asset(
+                                                      'assets/vaccineLocationRSElizabeth.jpg')
+                                                  : (var4PlaceLoc ==
+                                                          'RS Elizabeth'
+                                                      ? Image.asset(
+                                                          'assets/vaccineLocationRSElizabeth.jpg')
+                                                      : Image.asset(
+                                                          'assets/vaccineLocationRSKariadi.jpg'))))))
+                            ]),
+                      ))
                 ],
               )),
-        ));
+        )));
   }
 }
