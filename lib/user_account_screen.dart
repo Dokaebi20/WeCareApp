@@ -8,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ug44/home_screen.dart';
 import 'package:ug44/main.dart';
+import 'package:ug44/vaccine_certificate.dart';
+import 'package:ug44/vaccine_ticket.dart';
+import 'package:ug44/rate_us.dart';
 
 class UserAccountScreen extends StatelessWidget {
   @override
@@ -68,10 +71,19 @@ class MyUserAccountScreenState extends State<MyUserAccountScreen> {
   final List<Map<String, dynamic>> assetArr = [
     {
       "img": 'assets/vaccineCertificateIcon.png',
-      "title": "Vaccine Certificate"
+      "title": "Vaccine Certificate",
+      "ref": VaccineCertificateScreen()
     },
-    {"img": 'assets/vaccineTicketIcon.png', "title": "Vaccine Ticket "},
-    {"img": 'assets/rateUsIcon.png', "title": "Rate Us "},
+    {
+      "img": 'assets/vaccineTicketIcon.png',
+      "title": "Vaccine Ticket ",
+      "ref": VaccineTicketScreen()
+    },
+    {
+      "img": 'assets/rateUsIcon.png',
+      "title": "Rate Us ",
+      "ref": RateUsScreen()
+    },
   ];
   @override
   Widget build(BuildContext context) {
@@ -347,60 +359,75 @@ class MyUserAccountScreenState extends State<MyUserAccountScreen> {
                                               )
                                             ]
                                           : assetArr.map((e) {
-                                              return Container(
-                                                  padding: EdgeInsets.all(10),
+                                              return InkWell(
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder:
+                                                                (context) =>
+                                                                    e['ref']));
+                                                  },
                                                   child: Container(
-                                                    decoration: BoxDecoration(
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                              color: Colors
-                                                                  .black54,
-                                                              offset:
-                                                                  Offset.zero,
-                                                              blurRadius: 10,
-                                                              spreadRadius: 2,
-                                                              blurStyle:
-                                                                  BlurStyle
-                                                                      .normal),
-                                                        ],
-                                                        color: Colors.white,
-                                                        border: Border.all(
-                                                            color: Colors
-                                                                .transparent,
-                                                            width: 1,
-                                                            style: BorderStyle
-                                                                .solid),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10)),
-                                                    padding: EdgeInsets.all(5),
-                                                    child: Row(children: [
-                                                      Image.asset(
-                                                        '${e['img']}',
-                                                        width: 50,
-                                                        height: 50,
-                                                      ),
-                                                      Container(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            0.675,
-                                                        alignment:
-                                                            Alignment.center,
-                                                        child: Text(
-                                                          "${e["title"]}",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 20,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      )
-                                                    ]),
-                                                  ));
+                                                      padding:
+                                                          EdgeInsets.all(10),
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            boxShadow: [
+                                                              BoxShadow(
+                                                                  color: Colors
+                                                                      .black54,
+                                                                  offset: Offset
+                                                                      .zero,
+                                                                  blurRadius:
+                                                                      10,
+                                                                  spreadRadius:
+                                                                      2,
+                                                                  blurStyle:
+                                                                      BlurStyle
+                                                                          .normal),
+                                                            ],
+                                                            color: Colors.white,
+                                                            border: Border.all(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1,
+                                                                style:
+                                                                    BorderStyle
+                                                                        .solid),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10)),
+                                                        padding:
+                                                            EdgeInsets.all(5),
+                                                        child: Row(children: [
+                                                          Image.asset(
+                                                            '${e['img']}',
+                                                            width: 50,
+                                                            height: 50,
+                                                          ),
+                                                          Container(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.675,
+                                                            alignment: Alignment
+                                                                .center,
+                                                            child: Text(
+                                                              "${e["title"]}",
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          )
+                                                        ]),
+                                                      )));
                                             }).toList()),
                                 )),
                             Expanded(
