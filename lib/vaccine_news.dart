@@ -14,6 +14,8 @@ class VaccineNewsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Vaccine News',
+      scrollBehavior:
+          ScrollConfiguration.of(context).copyWith(scrollbars: false),
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -52,6 +54,8 @@ class MyVaccineNewsScreen extends StatefulWidget {
 
 class MyVaccineNewsScreenState extends State<MyVaccineNewsScreen> {
   var isSearch = false;
+  var searchController_ = TextEditingController();
+  var searchController_2 = '';
 
   void initState() {
     super.initState();
@@ -63,30 +67,35 @@ class MyVaccineNewsScreenState extends State<MyVaccineNewsScreen> {
 
   final List<Map<String, dynamic>> newsArr = [
     {
-      'title': '10 Varian Korona Terbaru. No 11 Buat Netizen....',
+      'isClick': false,
+      'title': '10 Varian Corona Terbaru. No 11 Buat Netizen....',
       'info':
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+          '     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n\n     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
     },
     {
-      'title': 'Berbagai Teori Konspirasi Mengenai Korona',
+      'isClick': false,
+      'title': 'Berbagai Teori Konspirasi Mengenai Corona',
       'info':
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+          '     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n\n     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
     },
     {
+      'isClick': false,
       'title': '10 Fakta Virus Corona Menurut Berbagai Profesor',
       'info':
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+          '     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n\n     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
     },
     {
+      'isClick': false,
       'title': '10 Negara Terbaik Dalam Menangani Pandemi Corona',
       'info':
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+          '     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n\n     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
     },
     {
+      'isClick': false,
       'title':
           'Profesor dari US Memprediksi Bahwa Pandemi  Virus Corona Akan Berlangsung Selama 3 Periode ',
       'info':
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+          '     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n\n     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
     }
   ];
 
@@ -101,7 +110,12 @@ class MyVaccineNewsScreenState extends State<MyVaccineNewsScreen> {
                 child: InkWell(
                     onTap: () {
                       setState(() {
-                        isSearch ? isSearch = false : isSearch = true;
+                        if (isSearch) {
+                          isSearch = false;
+                          searchController_.text = '';
+                        } else {
+                          isSearch = true;
+                        }
                       });
                     },
                     child: isSearch ? Icon(Icons.cancel) : Icon(Icons.search)))
@@ -115,6 +129,23 @@ class MyVaccineNewsScreenState extends State<MyVaccineNewsScreen> {
           title: Center(
               child: isSearch
                   ? TextField(
+                      controller: searchController_,
+                      onChanged: (value) {
+                        setState(() {
+                          searchController_2 = value;
+                          print(searchController_2);
+                          print(searchController_.text);
+                          // print(newsArr.where((el) =>
+                          //     (el['title'].indexOf(searchController_.text) !=
+                          //         0)));
+                          newsArr.forEach((el) {
+                            print(el['title'].toLowerCase().indexOf(
+                                    searchController_.text.toLowerCase()) !=
+                                -1);
+                            print(el['title']);
+                          });
+                        });
+                      },
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                           enabledBorder: UnderlineInputBorder(
@@ -131,7 +162,6 @@ class MyVaccineNewsScreenState extends State<MyVaccineNewsScreen> {
         body: SafeArea(
           child: Container(
               color: Color.fromARGB(255, 0, 62, 80),
-              padding: EdgeInsets.all(0),
               child: Stack(
                 children: [
                   Container(
@@ -141,28 +171,92 @@ class MyVaccineNewsScreenState extends State<MyVaccineNewsScreen> {
                         fit: BoxFit.fitWidth,
                       )),
                   Container(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.05,
+                          vertical: MediaQuery.of(context).size.height * 0.05),
                       child: ListView(
-                    children: newsArr.map((e) {
-                      return Container(
-                        child: Column(children: [
-                          Container(
-                              child: Image.asset(
-                            'assets/vaccineNewsImg.jpg',
-                            fit: BoxFit.fitWidth,
-                          )),
-                          Container(
-                              child: Text('${e['title']}',
-                                  style: TextStyle(fontSize: 20))),
-                          Container(
-                            child: Text(
-                              '${e['info']}',
-                              style: TextStyle(fontSize: 15),
-                            ),
-                          )
-                        ]),
-                      );
-                    }).toList(),
-                  ))
+                        children: (isSearch
+                                ? newsArr.where((el) =>
+                                    el['title'].toLowerCase().indexOf(
+                                        searchController_2.toLowerCase()) !=
+                                    (-1))
+                                : newsArr)
+                            .map((e) {
+                          return InkWell(
+                              onTap: () {
+                                setState(() {
+                                  newsArr.forEach((el) {
+                                    el['title'] == e['title']
+                                        ? null
+                                        : el['isClick'] = false;
+                                  });
+                                  e['isClick']
+                                      ? e['isClick'] = false
+                                      : e['isClick'] = true;
+                                });
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only(bottom: 20),
+                                padding: EdgeInsets.all(0),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                        color: Colors.transparent,
+                                        width: 1,
+                                        style: BorderStyle.solid)),
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                          alignment: Alignment.topCenter,
+                                          child: ClipRRect(
+                                              borderRadius: BorderRadius.only(
+                                                  topRight: Radius.circular(20),
+                                                  topLeft: Radius.circular(20)),
+                                              child: Image.asset(
+                                                'assets/vaccineNewsImg.jpg',
+                                                fit: BoxFit.fitHeight,
+                                              ))),
+                                      Container(
+                                          alignment: Alignment.centerLeft,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 20, vertical: 5),
+                                          child: Text(
+                                            '${e['title']}',
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold),
+                                            textAlign: TextAlign.justify,
+                                          )),
+                                      Container(
+                                          alignment: Alignment.centerLeft,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 20, vertical: 5),
+                                          child: Text('oleh Admin',
+                                              style: TextStyle(fontSize: 15))),
+                                      Container(
+                                          alignment: Alignment.centerLeft,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 20, vertical: 5),
+                                          child: Text('22/06/2022',
+                                              style: TextStyle(fontSize: 15))),
+                                      Container(
+                                        alignment: Alignment.centerLeft,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 5),
+                                        child: e['isClick']
+                                            ? Text(
+                                                '${e['info']}',
+                                                style: TextStyle(fontSize: 15),
+                                                textAlign: TextAlign.justify,
+                                              )
+                                            : null,
+                                      )
+                                    ]),
+                              ));
+                        }).toList(),
+                      ))
                 ],
               )),
         ));

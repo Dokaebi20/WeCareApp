@@ -468,7 +468,9 @@ class MyUserAccountScreenState extends State<MyUserAccountScreen> {
                                                   )),
                                                   onPressed: () {
                                                     setState(() {
-                                                      if (noHP != null) {
+                                                      if (_noHPController
+                                                              .text !=
+                                                          '') {
                                                         noHP =
                                                             '+62${_noHPController.text}';
                                                         isEditable = false;
@@ -476,7 +478,7 @@ class MyUserAccountScreenState extends State<MyUserAccountScreen> {
                                                                 context)
                                                             .showSnackBar(SnackBar(
                                                                 content: Text(
-                                                                    "Successfully Registered!")));
+                                                                    "Successfully Changed!")));
                                                       }
                                                     });
                                                   }),

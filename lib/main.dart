@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,7 +6,7 @@ import 'package:ug44/register_acc_screen.dart';
 
 void main() {
   runApp(MyApp());
-} 
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -35,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
       DeviceOrientation.portraitUp,
     ]);
     Timer(
-        Duration(milliseconds: 275),
+        Duration(milliseconds: 250),
         () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => LoginScreen())));
   }
