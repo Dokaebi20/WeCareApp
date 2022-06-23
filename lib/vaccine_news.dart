@@ -134,15 +134,45 @@ class MyVaccineNewsScreenState extends State<MyVaccineNewsScreen> {
                         setState(() {
                           searchController_2 = value;
                           print(searchController_2);
-                          print(searchController_.text);
-                          // print(newsArr.where((el) =>
-                          //     (el['title'].indexOf(searchController_.text) !=
-                          //         0)));
+                          print(newsArr.where((el) {
+                            var counter_ = 0;
+                            searchController_2
+                                .toLowerCase()
+                                .split(' ')
+                                .map((e) {
+                              el['title'].toLowerCase().contains(e)
+                                  ? counter_++
+                                  : null;
+                            }).toList();
+
+                            return counter_ ==
+                                    searchController_2
+                                        .toLowerCase()
+                                        .split(' ')
+                                        .length
+                                ? true
+                                : false;
+
+                            (el['title'].contains(searchController_.text) != 0);
+                          }));
                           newsArr.forEach((el) {
-                            print(el['title'].toLowerCase().indexOf(
-                                    searchController_.text.toLowerCase()) !=
-                                -1);
-                            print(el['title']);
+                            var counter_ = 0;
+                            searchController_2
+                                .toLowerCase()
+                                .split(' ')
+                                .map((e) {
+                              el['title'].toLowerCase().contains(e)
+                                  ? counter_ += 1
+                                  : null;
+                            }).toList();
+
+                            counter_ ==
+                                    searchController_2
+                                        .toLowerCase()
+                                        .split(' ')
+                                        .length
+                                ? print(true)
+                                : print(false);
                           });
                         });
                       },
@@ -176,10 +206,25 @@ class MyVaccineNewsScreenState extends State<MyVaccineNewsScreen> {
                           vertical: MediaQuery.of(context).size.height * 0.05),
                       child: ListView(
                         children: (isSearch
-                                ? newsArr.where((el) =>
-                                    el['title'].toLowerCase().indexOf(
-                                        searchController_2.toLowerCase()) !=
-                                    (-1))
+                                ? newsArr.where((el) {
+                                    var counter_ = 0;
+                                    searchController_2
+                                        .toLowerCase()
+                                        .split(' ')
+                                        .map((e) {
+                                      el['title'].toLowerCase().contains(e)
+                                          ? counter_++
+                                          : null;
+                                    }).toList();
+
+                                    return counter_ ==
+                                            searchController_2
+                                                .toLowerCase()
+                                                .split(' ')
+                                                .length
+                                        ? true
+                                        : false;
+                                  })
                                 : newsArr)
                             .map((e) {
                           return InkWell(
