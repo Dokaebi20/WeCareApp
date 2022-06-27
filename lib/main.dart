@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
       DeviceOrientation.portraitUp,
     ]);
     Timer(
-        Duration(milliseconds: 250),
+        Duration(milliseconds: 3500),
         () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => LoginScreen())));
   }
