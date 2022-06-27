@@ -170,6 +170,7 @@ class MyRateUsScreenState extends State<MyRateUsScreen> {
                                             style: BorderStyle.solid)),
                                     child: TextField(
                                       keyboardType: TextInputType.multiline,
+                                      maxLines: 99,
                                       decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintText: 'Insert Your FeedBack'),
