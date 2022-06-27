@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ug44/main.dart';
+import 'package:WeCare/main.dart';
 
 class RegisterAccScreen extends StatelessWidget {
   @override

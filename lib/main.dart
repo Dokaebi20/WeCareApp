@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ug44/home_screen.dart';
-import 'package:ug44/register_acc_screen.dart';
+import 'package:WeCare/home_screen.dart';
+import 'package:WeCare/register_acc_screen.dart';
 
 void main() {
   runApp(MyApp());

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ug44/home_screen.dart';
+import 'package:WeCare/home_screen.dart';
 
 class VaccineRegisterScreen extends StatelessWidget {
   @override

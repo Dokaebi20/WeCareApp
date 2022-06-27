@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ug44/home_screen.dart';
-import 'package:ug44/main.dart';
-import 'package:ug44/rate_us.dart';
-import 'package:ug44/vaccine_certificate.dart';
-import 'package:ug44/vaccine_ticket.dart';
+import 'package:WeCare/home_screen.dart';
+import 'package:WeCare/main.dart';
+import 'package:WeCare/rate_us.dart';
+import 'package:WeCare/vaccine_certificate.dart';
+import 'package:WeCare/vaccine_ticket.dart';
 
 class UserAccountScreen extends StatelessWidget {
   @override

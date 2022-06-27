@@ -5,10 +5,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:ug44/home_screen.dart';
-import 'package:ug44/user_account_screen.dart';
-import 'package:ug44/vaccine_certificate.dart';
-import 'package:ug44/vaccine_ticket.dart';
+import 'package:WeCare/home_screen.dart';
+import 'package:WeCare/user_account_screen.dart';
+import 'package:WeCare/vaccine_certificate.dart';
+import 'package:WeCare/vaccine_ticket.dart';
 
 class RateUsScreen extends StatelessWidget {
   @override
