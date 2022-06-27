@@ -1,18 +1,14 @@
 import 'dart:async';
-import 'dart:html';
-import 'dart:isolate';
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:ug44/home_screen.dart';
-import 'package:ug44/main.dart';
 import 'package:ug44/user_account_screen.dart';
 import 'package:ug44/vaccine_certificate.dart';
 import 'package:ug44/vaccine_ticket.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class RateUsScreen extends StatelessWidget {
   @override

@@ -1,16 +1,14 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ug44/covid_vaccine.dart';
 import 'package:ug44/user_account_screen.dart';
-import 'package:ug44/user_account_screen.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ug44/vaccine_certificate.dart';
 import 'package:ug44/vaccine_news.dart';
 import 'package:ug44/vaccine_place.dart';
 import 'package:ug44/vaccine_register.dart';
 import 'package:ug44/vaccine_ticket.dart';
-import 'package:ug44/vaccine_certificate.dart';
 
 class UserHomeScreen extends StatelessWidget {
   @override

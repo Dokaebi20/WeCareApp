@@ -1,14 +1,8 @@
-import 'dart:async';
-import 'dart:html';
-import 'dart:isolate';
-import 'dart:math';
-
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ug44/home_screen.dart';
-import 'package:ug44/main.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 
 class CovidVaccineScreen extends StatelessWidget {
   @override
