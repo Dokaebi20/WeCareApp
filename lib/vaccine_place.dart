@@ -94,7 +94,6 @@ class MyVaccinePlaceScreenState extends State<MyVaccinePlaceScreen> {
           )),
         ),
         body: SafeArea(
-            child: Expanded(
           child: Container(
               alignment: Alignment.center,
               color: Color.fromARGB(255, 0, 62, 80),
@@ -200,6 +199,6 @@ class MyVaccinePlaceScreenState extends State<MyVaccinePlaceScreen> {
                       ))
                 ],
               )),
-        )));
+        ));
   }
 }

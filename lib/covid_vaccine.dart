@@ -107,7 +107,6 @@ class MyCovidVaccineScreenState extends State<MyCovidVaccineScreen> {
           )),
         ),
         body: SafeArea(
-            child: Expanded(
           child: Container(
               color: Color.fromARGB(255, 0, 62, 80),
               padding: EdgeInsets.all(0),
@@ -193,6 +192,6 @@ class MyCovidVaccineScreenState extends State<MyCovidVaccineScreen> {
                       ))
                 ],
               )),
-        )));
+        ));
   }
 }
