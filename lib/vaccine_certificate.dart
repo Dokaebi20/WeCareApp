@@ -131,67 +131,59 @@ class MyVaccineCertificateScreenState
                                     content: Text(
                                         "Vaccine Certificated #${certificateArr.indexWhere((el) => el['token'] == e['token']) + 1} Have Been Saved to Your Local Storage")));
                               },
-                              child: Expanded(
-                                  child: Container(
-                                      height: e['isOpen'] ? null : null,
-                                      margin: EdgeInsets.only(top: 10),
-                                      decoration: BoxDecoration(
-                                          boxShadow: [
-                                            BoxShadow(
-                                                color: Colors.black54,
-                                                spreadRadius: 3,
-                                                blurRadius: 10,
-                                                blurStyle: BlurStyle.normal)
-                                          ],
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          border: Border.all(
-                                              color: Colors.transparent,
-                                              width: 1,
-                                              style: BorderStyle.solid)),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                              alignment: Alignment.center,
-                                              height: 30,
-                                              child: Text(
-                                                'Vaccine #${certificateArr.indexWhere((el) => el['token'] == e['token']) + 1}',
-                                                style: TextStyle(
-                                                    fontSize: 18,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              )),
-                                          e['isOpen']
-                                              ? Container(
-                                                  margin:
-                                                      EdgeInsets.only(top: 10),
-                                                  child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              30),
-                                                      child: Image(
-                                                          image: AssetImage(
-                                                              'assets/vaccineCertificateExample90.png'))),
-                                                  height: 700,
-                                                )
-                                              : Container(
-                                                  margin:
-                                                      EdgeInsets.only(top: 10),
-                                                  child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      child: Image(
-                                                        image: AssetImage(
-                                                            '${e['img']}'),
-                                                        fit: BoxFit.fitWidth,
-                                                      )),
-                                                )
-                                        ],
-                                      ))));
+                              child: Container(
+                                  height: e['isOpen'] ? null : null,
+                                  margin: EdgeInsets.only(top: 10),
+                                  decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black54,
+                                            spreadRadius: 3,
+                                            blurRadius: 10,
+                                            blurStyle: BlurStyle.normal)
+                                      ],
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                          color: Colors.transparent,
+                                          width: 1,
+                                          style: BorderStyle.solid)),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                          alignment: Alignment.center,
+                                          height: 30,
+                                          child: Text(
+                                            'Vaccine #${certificateArr.indexWhere((el) => el['token'] == e['token']) + 1}',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                      e['isOpen']
+                                          ? Container(
+                                              margin: EdgeInsets.only(top: 10),
+                                              child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(30),
+                                                  child: Image(
+                                                      image: AssetImage(
+                                                          'assets/vaccineCertificateExample90.png'))),
+                                              height: 700,
+                                            )
+                                          : Container(
+                                              margin: EdgeInsets.only(top: 10),
+                                              child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  child: Image(
+                                                    image: AssetImage(
+                                                        '${e['img']}'),
+                                                    fit: BoxFit.fitWidth,
+                                                  )),
+                                            )
+                                    ],
+                                  )));
                         }).toList(),
                       ))
                 ],

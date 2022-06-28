@@ -117,192 +117,176 @@ class MyVaccineTicketScreenState extends State<MyVaccineTicketScreen> {
                         children: ticketArr.map((e) {
                           return InkWell(
                               onTap: () {},
-                              child: Expanded(
-                                  child: Container(
-                                      margin: EdgeInsets.all(10),
-                                      height: e['isOpen'] ? null : null,
-                                      padding: EdgeInsets.only(top: 10),
-                                      decoration: BoxDecoration(
-                                          boxShadow: [
-                                            BoxShadow(
-                                                color: Colors.black54,
-                                                spreadRadius: 3,
-                                                blurRadius: 10,
-                                                blurStyle: BlurStyle.normal)
-                                          ],
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          border: Border.all(
-                                              color: Colors.transparent,
-                                              width: 1,
-                                              style: BorderStyle.solid)),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                              alignment: Alignment.center,
-                                              height: 30,
-                                              child: Text(
-                                                'Ticket #${ticketArr.indexWhere((el) => el['token'] == e['token']) + 1}',
-                                                style: TextStyle(
-                                                    fontSize: 18,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              )),
-                                          Container(
-                                            decoration: DottedDecoration(
-                                                linePosition: LinePosition.top,
-                                                color: Colors.black,
-                                                strokeWidth: 3),
-                                            margin: EdgeInsets.only(top: 10),
-                                            child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                                child: Image(
-                                                  image:
-                                                      AssetImage('${e['img']}'),
-                                                  fit: BoxFit.fitWidth,
-                                                )),
-                                          ),
-                                          Container(
-                                            decoration: DottedDecoration(
-                                                linePosition: LinePosition.top,
-                                                color: Colors.black,
-                                                strokeWidth: 3),
-                                            padding: EdgeInsets.all(10),
-                                            child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: [
-                                                  Container(
-                                                    child: ElevatedButton(
-                                                        style: ElevatedButton.styleFrom(
-                                                            fixedSize: Size(
-                                                                MediaQuery.of(context)
-                                                                        .size
-                                                                        .width *
-                                                                    0.325,
-                                                                50),
-                                                            primary:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    94,
-                                                                    154,
-                                                                    182),
-                                                            side: BorderSide(
-                                                                width: 3,
-                                                                color: Colors
-                                                                    .transparent),
-                                                            shape: RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius.circular(
+                              child: Container(
+                                  margin: EdgeInsets.all(10),
+                                  height: e['isOpen'] ? null : null,
+                                  padding: EdgeInsets.only(top: 10),
+                                  decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black54,
+                                            spreadRadius: 3,
+                                            blurRadius: 10,
+                                            blurStyle: BlurStyle.normal)
+                                      ],
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                          color: Colors.transparent,
+                                          width: 1,
+                                          style: BorderStyle.solid)),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                          alignment: Alignment.center,
+                                          height: 30,
+                                          child: Text(
+                                            'Ticket #${ticketArr.indexWhere((el) => el['token'] == e['token']) + 1}',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                      Container(
+                                        decoration: DottedDecoration(
+                                            linePosition: LinePosition.top,
+                                            color: Colors.black,
+                                            strokeWidth: 3),
+                                        margin: EdgeInsets.only(top: 10),
+                                        child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            child: Image(
+                                              image: AssetImage('${e['img']}'),
+                                              fit: BoxFit.fitWidth,
+                                            )),
+                                      ),
+                                      Container(
+                                        alignment: Alignment.center,
+                                        decoration: DottedDecoration(
+                                            linePosition: LinePosition.top,
+                                            color: Colors.black,
+                                            strokeWidth: 3),
+                                        padding: EdgeInsets.all(10),
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Container(
+                                                child: ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                        fixedSize: Size(
+                                                            MediaQuery.of(context)
+                                                                    .size
+                                                                    .width *
+                                                                0.325,
+                                                            50),
+                                                        primary: Color.fromARGB(
+                                                            255, 94, 154, 182),
+                                                        side: BorderSide(
+                                                            width: 3,
+                                                            color: Colors
+                                                                .transparent),
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
                                                                         20))),
-                                                        child: Center(
-                                                            child: Text(
-                                                          "Sent Via E-Mail",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 15),
-                                                        )),
-                                                        onPressed: () {
-                                                          if (timeEmail == 0) {
-                                                            timeEmail = 15;
-                                                            Timer.periodic(
-                                                                Duration(
-                                                                    seconds: 1),
-                                                                (timer) {
-                                                              timeEmail == 0
-                                                                  ? timer
-                                                                      .cancel()
-                                                                  : timeEmail--;
-                                                            });
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                                    SnackBar(
-                                                                        content:
-                                                                            Text("Ticket Have Been Sent to Your E-Mail")));
-                                                          } else {
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                                    SnackBar(
-                                                                        content:
-                                                                            Text("Wait $timeEmail seconds")));
-                                                          }
-                                                          ;
-                                                        }),
-                                                  ),
-                                                  Container(
-                                                    alignment:
-                                                        Alignment.topLeft,
-                                                    child: ElevatedButton(
-                                                        style: ElevatedButton.styleFrom(
-                                                            fixedSize: Size(
-                                                                MediaQuery.of(context)
-                                                                        .size
-                                                                        .width *
-                                                                    0.325,
-                                                                50),
-                                                            primary:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    94,
-                                                                    154,
-                                                                    182),
-                                                            side: BorderSide(
-                                                                width: 3,
-                                                                color: Colors
-                                                                    .transparent),
-                                                            shape: RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius.circular(
+                                                    child: Center(
+                                                        child: Text(
+                                                      "Sent Via E-Mail",
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 15),
+                                                    )),
+                                                    onPressed: () {
+                                                      if (timeEmail == 0) {
+                                                        timeEmail = 15;
+                                                        Timer.periodic(
+                                                            Duration(
+                                                                seconds: 1),
+                                                            (timer) {
+                                                          timeEmail == 0
+                                                              ? timer.cancel()
+                                                              : timeEmail--;
+                                                        });
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(SnackBar(
+                                                                content: Text(
+                                                                    "Ticket Have Been Sent to Your E-Mail")));
+                                                      } else {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(SnackBar(
+                                                                content: Text(
+                                                                    "Wait $timeEmail seconds")));
+                                                      }
+                                                      ;
+                                                    }),
+                                              ),
+                                              Container(
+                                                alignment: Alignment.center,
+                                                child: ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                        fixedSize: Size(
+                                                            MediaQuery.of(context)
+                                                                    .size
+                                                                    .width *
+                                                                0.325,
+                                                            50),
+                                                        primary: Color.fromARGB(
+                                                            255, 94, 154, 182),
+                                                        side: BorderSide(
+                                                            width: 3,
+                                                            color: Colors
+                                                                .transparent),
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
                                                                         20))),
-                                                        child: Center(
-                                                            child: Text(
-                                                          "Send Via SMS ",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 15),
-                                                        )),
-                                                        onPressed: () {
-                                                          if (timeSMS == 0) {
-                                                            timeSMS = 90;
-                                                            Timer.periodic(
-                                                                Duration(
-                                                                    seconds: 1),
-                                                                (timer) {
-                                                              timeSMS == 0
-                                                                  ? timer
-                                                                      .cancel()
-                                                                  : timeSMS--;
-                                                            });
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                                    SnackBar(
-                                                                        content:
-                                                                            Text("Ticket Have Been Sent to Your SMS")));
-                                                          } else {
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                                    SnackBar(
-                                                                        content:
-                                                                            Text("Wait $timeSMS seconds")));
-                                                          }
-                                                          ;
-                                                        }),
-                                                  )
-                                                ]),
-                                          )
-                                        ],
-                                      ))));
+                                                    child: Center(
+                                                        child: Text(
+                                                      "Send Via SMS ",
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 15),
+                                                    )),
+                                                    onPressed: () {
+                                                      if (timeSMS == 0) {
+                                                        timeSMS = 90;
+                                                        Timer.periodic(
+                                                            Duration(
+                                                                seconds: 1),
+                                                            (timer) {
+                                                          timeSMS == 0
+                                                              ? timer.cancel()
+                                                              : timeSMS--;
+                                                        });
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(SnackBar(
+                                                                content: Text(
+                                                                    "Ticket Have Been Sent to Your SMS")));
+                                                      } else {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(SnackBar(
+                                                                content: Text(
+                                                                    "Wait $timeSMS seconds")));
+                                                      }
+                                                      ;
+                                                    }),
+                                              )
+                                            ]),
+                                      )
+                                    ],
+                                  )));
                         }).toList(),
                       ))
                 ],

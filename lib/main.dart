@@ -7,10 +7,7 @@ import 'package:WeCare/register_acc_screen.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(LoginScreen());
-  FlutterNativeSplash.remove();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -38,16 +35,23 @@ class _MyHomePageState extends State<MyHomePage> {
       DeviceOrientation.portraitDown,
       DeviceOrientation.portraitUp,
     ]);
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => LoginScreen()));
+    Timer(Duration(milliseconds: 3000), () {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => LoginScreen()));
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      color: Color.fromARGB(255, 0, 62, 80),
-    ));
+      body: Container(
+          child: Center(
+              child: Image.asset(
+        'assets/SplashScreen.png',
+        fit: BoxFit.cover,
+        width: MediaQuery.of(context).size.width,
+      ))),
+    );
   }
 }
 
